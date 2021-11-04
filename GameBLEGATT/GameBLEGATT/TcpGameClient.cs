@@ -65,7 +65,7 @@ namespace GameBLEGATT
             catch (Exception  e)
             {
                 Console.WriteLine("Unityyn ei saatu yhteyttä\n");
-                Console.WriteLine(e);
+                Console.WriteLine(e + "\n");
             }
 
                 if (socketConnection == null)

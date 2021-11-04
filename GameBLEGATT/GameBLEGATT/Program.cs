@@ -71,6 +71,8 @@ namespace GameBLEGATT
                     Thread.Sleep(5000);
                 }
             }
+
+            Console.WriteLine("Yhteys muodostettu Unityyn onnistunesti!\n\n\n\n\n");
             
 
             // TODO : Create instance of GameBLEGatt Class, pass TcpGameClient instance to constructor

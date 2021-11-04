@@ -12,6 +12,13 @@
 
 //Gyro/accel
 #include "SparkFunLSM6DS3.h"
+/*
+ * Asennus ohjeet SparkFunLSM6DS3.h kirjastoon
+ * 
+ * 1. Sketsi > Sisällytä Kirjasto > Ylläpidä Kirjastoja
+ * 2. Kirjoita hakuun "Accelerometer And Gyroscope LSM6DS3" (Oikean kirjaston on tehnyt Seeed Studio)
+ * 3. Asenna versio 2.0 (tai uudempi)
+ */
 #include "Wire.h"
 
 //Create a instance of class LSM6DS3

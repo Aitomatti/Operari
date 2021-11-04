@@ -84,10 +84,8 @@ public class Character : MonoBehaviour
         }
         else
         {
-            rBody.angularVelocity = Vector3.zero; //Pysäyttä pyörimisen
+            rBody.angularVelocity = Vector3.zero; //Pysäyttää pyörimisen
         }
-
-
 
         if (Input.GetKey("a"))
         {

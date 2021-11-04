@@ -1,1 +1,0 @@
-C:\Users\Marko\Desktop\ESP BLuetooth\GameBLEGATT\GameBLEGATT\GameBLEGATT.csproj;x86

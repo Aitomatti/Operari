@@ -29,6 +29,7 @@
 
 
 using System;
+using System.Threading;
 
 // This example code shows how you could implement the required main function for a 
 // Console UWP Application. You can replace all the code inside Main with your own custom code.
@@ -58,7 +59,19 @@ namespace GameBLEGATT
             TcpGameClient gameClient = new TcpGameClient();
 
             // TODO : Call Connect method from created instance
-            gameClient.Connect();
+            bool exitLoop = false;
+            while (!exitLoop)
+            {
+                Console.WriteLine("Yritetään muodostaa yhteyttä Unityyn");
+                exitLoop = gameClient.Connect();
+
+                if (!exitLoop)
+                {
+                    Console.WriteLine("Yhteyden muodostus epäonnitui. Yritetään uudelleen 5 sekunnin päästä.");
+                    Thread.Sleep(5000);
+                }
+            }
+            
 
             // TODO : Create instance of GameBLEGatt Class, pass TcpGameClient instance to constructor
             GameBLEGatt gameBLE = new GameBLEGatt(gameClient);

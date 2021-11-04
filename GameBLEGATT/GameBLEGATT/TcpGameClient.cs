@@ -55,18 +55,27 @@ namespace GameBLEGATT
         /// <returns></returns>
         public bool Connect()
         {
-            socketConnection = new TcpClient("localhost", 8052);
 
-            if(socketConnection == null)
+            // Unityyn ei saaha yhdistettä error handling
+            
+            try
             {
-                return false;
+                socketConnection = new TcpClient("localhost", 8052);
             }
-            else
+            catch (Exception  e)
             {
-                return true;
+                Console.WriteLine("Unityyn ei saatu yhteyttä\n");
+                Console.WriteLine(e);
             }
 
-            // TODO : Return false if socketConnectio is null, if socketconnection is not null then return true
+                if (socketConnection == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             
 
         }

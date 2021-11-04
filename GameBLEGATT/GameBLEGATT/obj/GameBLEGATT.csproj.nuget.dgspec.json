@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Marko\\Desktop\\ESP BLuetooth\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj": {}
+    "C:\\Users\\Severi\\Documents\\GitHub\\operari\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Marko\\Desktop\\ESP BLuetooth\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj": {
+    "C:\\Users\\Severi\\Documents\\GitHub\\operari\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Marko\\Desktop\\ESP BLuetooth\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj",
+        "projectUniqueName": "C:\\Users\\Severi\\Documents\\GitHub\\operari\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj",
         "projectName": "GameBLEGATT",
-        "projectPath": "C:\\Users\\Marko\\Desktop\\ESP BLuetooth\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj",
-        "packagesPath": "C:\\Users\\Marko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Marko\\Desktop\\ESP BLuetooth\\GameBLEGATT\\GameBLEGATT\\obj\\",
+        "projectPath": "C:\\Users\\Severi\\Documents\\GitHub\\operari\\GameBLEGATT\\GameBLEGATT\\GameBLEGATT.csproj",
+        "packagesPath": "C:\\Users\\Severi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Severi\\Documents\\GitHub\\operari\\GameBLEGATT\\GameBLEGATT\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
@@ -19,7 +19,7 @@
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Marko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Severi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

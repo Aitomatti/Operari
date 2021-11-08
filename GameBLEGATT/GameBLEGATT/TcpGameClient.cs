@@ -98,15 +98,12 @@ namespace GameBLEGATT
                     NetworkStream stream = socketConnection.GetStream();
                     if (stream.CanWrite)
                     {
+                        //Console.WriteLine(command.Length);
                         // Write byte array to socketConnection stream.                 
                         stream.Write(command, 0, command.Length);
-                        int value = BitConverter.ToInt32(command, 0);
+                        //int value = BitConverter.ToInt32(command, 0);
 
-                        
-                        //stream.Write(command, 0, command.Length);
-                        //int valueY = BitConverter.ToInt32(command, 1);
-
-                        Console.WriteLine("TcpGameClient - SendMessage() --> Send" + value );
+                        //Console.WriteLine("TcpGameClient - SendMessage() --> Send" + value );
                     }
                 }
                 catch (SocketException socketException)

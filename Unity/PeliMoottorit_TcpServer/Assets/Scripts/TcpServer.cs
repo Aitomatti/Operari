@@ -33,6 +33,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class TcpServer : MonoBehaviour
@@ -113,17 +114,25 @@ public class TcpServer : MonoBehaviour
 					// Get a stream object for reading 					
 					using (NetworkStream stream = connectedTcpClient.GetStream())
 					{
+
+						
 						int length;
 						// Read incomming stream into byte arrary. 						
 						while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
 						{
-						
+							DataPackage dataPackage = FromBytes<DataPackage>(bytes);
+
+							Debug.Log("Streaming stuffs to Unitys");
+							Debug.Log("X-value: " + dataPackage.x);
+							Debug.Log("Y-value: " + dataPackage.y);
+							Debug.Log("Z-value: " + dataPackage.z);
+							Debug.Log("W-value: " + dataPackage.w);
+
 							InputValue = BitConverter.ToInt32(bytes, 0);
 
-							Debug.LogError(InputValue + " len " + length);
-		
-		
+							//Debug.LogError(InputValue + " len " + length);
 						}
+						
 					}
 				}
 			}
@@ -133,4 +142,24 @@ public class TcpServer : MonoBehaviour
 			Debug.Log("SocketException " + socketException.ToString());
 		}
 	}
+
+	public struct DataPackage
+    {
+		public float x;
+		public float y;
+		public float z;
+		public float w;
+		public int buttons;
+    }
+
+	public T FromBytes<T>(byte[] byteArray)
+    {
+		T data = default(T);
+		int size = Marshal.SizeOf(data);
+		IntPtr ptr = Marshal.AllocHGlobal(size);
+		Marshal.Copy(byteArray, 0, ptr, size);
+		data = (T)Marshal.PtrToStructure(ptr, data.GetType());
+		Marshal.FreeHGlobal(ptr);
+		return data;
+    }
 }

@@ -239,15 +239,6 @@ namespace GameBLEGATT
 
             Console.WriteLine(input);
 
-            if (input[0] == 0)
-            {
-                Console.WriteLine("Button OFF");
-            }
-            if (input[0] == 1)
-            {
-                Console.WriteLine("Button ON!!!");
-            }
-
             
             // TODO : Perform Read/Write operations on a characteristic
             // Read Values and call tcmpGameClient.SendMessage and pass readed byte array

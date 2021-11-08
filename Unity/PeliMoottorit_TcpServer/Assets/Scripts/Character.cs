@@ -42,6 +42,7 @@ public class Character : MonoBehaviour
     protected float tiltAngle;
     protected Rigidbody rBody;
     protected Vector3 rEulerVel;
+    
 
     /// <summary>
     /// Start is called before the first frame update
@@ -62,20 +63,20 @@ public class Character : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         tiltAngle = 1.0f;
         // FIXME: STUPID SIMPLE EXAMPLE, ONLY FOR DEMO PURPOSE
-        Debug.Log("Rotation= " + tiltAngle);
+        //Debug.Log("Rotation= " + tiltAngle);
 
-        if (Input.GetKey("l"))
-        {
+        if (Input.GetKey("l") )
+        {  
             Debug.Log("L pressed rotating right");
 
             //rBody.AddTorque(0, tiltAngle, 0); //T‰ytyy k‰ytt‰ addForce ja addTorque jotta rigidBody reagoi kesken‰‰n
             rBody.angularVelocity = new Vector3(0, tiltAngle, 0);
         }
-        else if (Input.GetKey("j"))
+        else if (Input.GetKey("j") )
         {
             Debug.Log("J pressed rotating left");
             tiltAngle = -tiltAngle;
@@ -93,7 +94,7 @@ public class Character : MonoBehaviour
             float move = 0;
 
             move++;
-
+            
             
         }
     }

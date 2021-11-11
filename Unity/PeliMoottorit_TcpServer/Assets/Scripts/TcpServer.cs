@@ -63,6 +63,12 @@ public class TcpServer : MonoBehaviour
 	/// </summary>
 	public static int InputValue;
 
+	public static float xRot;
+	public static float yRot;
+	public static float zRot;
+	public static float wRot;
+
+
 
 	/// <summary>
 	/// Start
@@ -121,12 +127,18 @@ public class TcpServer : MonoBehaviour
 						while ((length = stream.Read(bytes, 0, bytes.Length)) != 0)
 						{
 							DataPackage dataPackage = FromBytes<DataPackage>(bytes);
-
+							/*
 							Debug.Log("Streaming stuffs to Unitys");
 							Debug.Log("X-value: " + dataPackage.x);
 							Debug.Log("Y-value: " + dataPackage.y);
 							Debug.Log("Z-value: " + dataPackage.z);
 							Debug.Log("W-value: " + dataPackage.w);
+							*/
+							xRot = dataPackage.x;
+							yRot = dataPackage.y;
+							zRot = dataPackage.z;
+							wRot =  dataPackage.w;
+							//Debug.Log("x-rot= " + xRot);
 
 							InputValue = BitConverter.ToInt32(bytes, 0);
 

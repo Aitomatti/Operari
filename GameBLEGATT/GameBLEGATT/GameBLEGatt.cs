@@ -238,8 +238,9 @@ namespace GameBLEGATT
             tcpGameClient.SendMessage(input);
 
             Console.WriteLine(input);
+            Console.WriteLine("_______");
 
-            
+
             // TODO : Perform Read/Write operations on a characteristic
             // Read Values and call tcmpGameClient.SendMessage and pass readed byte array
 

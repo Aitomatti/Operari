@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
+    public GameObject demoKuutioPrefab;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject gameObject = GetComponent <GameObject>();
+        //GameObject gameObject = GetComponent <GameObject>();
     }
     // Update is called once per frame
     void Update()
@@ -18,7 +19,7 @@ public class ItemSpawner : MonoBehaviour
     void FixedUpdate()
     {
 
-        if(Input.GetKey("s"))
+        if(Input.GetKeyDown("s"))
         {
             Spawn();
         }
@@ -26,7 +27,7 @@ public class ItemSpawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject newObject = Instantiate(gameObject);
-        newObject.transform.position = new Vector3(0, -1 + transform.localScale.y / 2, 0);
+        GameObject newObject = Instantiate(demoKuutioPrefab);
+        newObject.transform.position = new Vector3(0, transform.localPosition.y + 50 , 0);
     }
 }

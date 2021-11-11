@@ -42,7 +42,10 @@ public class Character : MonoBehaviour
     protected float tiltAngle;
     protected Rigidbody rBody;
     protected Vector3 rEulerVel;
-    
+
+    Quaternion test;
+     //   = new Quaternion(0, 0, 0, 0);
+
 
     /// <summary>
     /// Start is called before the first frame update
@@ -68,6 +71,11 @@ public class Character : MonoBehaviour
         tiltAngle = 1.0f;
         // FIXME: STUPID SIMPLE EXAMPLE, ONLY FOR DEMO PURPOSE
         //Debug.Log("Rotation= " + tiltAngle);
+
+        //TESTATAAN GYRON ARVOJA!!!!
+        test = new Quaternion(TcpServer.xRot, TcpServer.yRot, TcpServer.zRot, TcpServer.wRot);
+        transform.rotation = test;
+        //Debug.Log("tecp X= " + TcpServer.yRot);
 
         if (Input.GetKey("l") )
         {  

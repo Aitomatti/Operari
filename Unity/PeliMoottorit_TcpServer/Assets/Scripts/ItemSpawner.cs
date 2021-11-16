@@ -27,7 +27,7 @@ public class ItemSpawner : MonoBehaviour
 
     void Spawn()
     {
-        GameObject newObject = Instantiate(demoKuutioPrefab);
+        GameObject newObject = (GameObject)Instantiate(demoKuutioPrefab);
         newObject.transform.position = new Vector3(0, transform.localPosition.y + 50 , 0);
     }
 }

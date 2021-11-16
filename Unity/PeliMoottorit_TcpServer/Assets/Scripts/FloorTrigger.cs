@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FloorTrigger : MonoBehaviour
 {
-    [SerializeField] int lostPoints = 0;
+    [SerializeField] static public int lostPoints = 0;
     // Start is called before the first frame update
     void Start()
     {

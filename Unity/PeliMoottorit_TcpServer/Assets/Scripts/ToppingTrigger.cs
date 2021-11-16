@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToppingTrigger : MonoBehaviour
 {
-    [SerializeField] int AddedPoints = 0;
+    [SerializeField] static public int AddedPoints = 0;
     // Start is called before the first frame update
     void Start()
     {

@@ -170,7 +170,7 @@ public class HiScore : MonoBehaviour {
     /// ShowInputQuery
     /// </summary>
     /// <param name="score"></param>
-    public void ShowInputQuery(float score) {
+    public void ShowInputQuery(int score) {
         hiScoreInput.GetComponent<HiScoreInput>().Score = score;
         hiScoreInput.gameObject.SetActive(true);
     }

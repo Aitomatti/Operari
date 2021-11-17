@@ -55,6 +55,8 @@ public class Character : MonoBehaviour
         rBody = GetComponent<Rigidbody>();
         rEulerVel = new Vector3(0, 100, 0);
 
+
+
     }
 
 
@@ -72,10 +74,18 @@ public class Character : MonoBehaviour
         // FIXME: STUPID SIMPLE EXAMPLE, ONLY FOR DEMO PURPOSE
         //Debug.Log("Rotation= " + tiltAngle);
 
+
         //TESTATAAN GYRON ARVOJA!!!!
         test = new Quaternion(TcpServer.xRot, TcpServer.yRot, TcpServer.zRot, TcpServer.wRot);
         transform.rotation = test;
         //Debug.Log("tecp X= " + TcpServer.yRot);
+
+        if (Input.GetKey("r"))
+        {
+            Debug.Log("RESET PIZZA POSITION");
+            transform.rotation = new Quaternion(0, 0, 0, 0); ;
+        }
+
 
         if (Input.GetKey("l") )
         {  

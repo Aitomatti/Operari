@@ -54,13 +54,13 @@ public class ItemSpawner : MonoBehaviour
         newObject.transform.position = new Vector3(0, transform.localPosition.y + 50 , 0);
 
         //vahenna spawnaus ajanvalia
-        spawnRate /= 1.1f;
+        
         Debug.Log("Spawned rate= "+ spawnRate);
 
         if(spawnRate > 0.3)
         {
-            Invoke("Spawn", spawnRate);
+            spawnRate /= 1.1f;
         }
-        
+        Invoke("Spawn", spawnRate);
     }
 }

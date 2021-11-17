@@ -75,8 +75,8 @@ public class Character : MonoBehaviour
         //Debug.Log("Rotation= " + tiltAngle);
 
 
-        //TESTATAAN GYRON ARVOJA!!!!
-        test = new Quaternion(TcpServer.xRot, TcpServer.yRot, TcpServer.zRot, TcpServer.wRot);
+        //GYRON ARVOJA!!!! --y rotaatio asetettu negatiiviseksi
+        test = new Quaternion(-TcpServer.xRot, (TcpServer.yRot), TcpServer.zRot, TcpServer.wRot);
         transform.rotation = test;
         //Debug.Log("tecp X= " + TcpServer.yRot);
 

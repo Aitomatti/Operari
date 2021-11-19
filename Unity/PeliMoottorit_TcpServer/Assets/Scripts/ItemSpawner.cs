@@ -37,6 +37,8 @@ public class ItemSpawner : MonoBehaviour
     {
         Debug.Log("Spawned object");
         int rndNum = Random.Range(0,3);
+        float xPosition = Random.Range(-4, 5);
+        float zPosition = Random.Range(-4, 5);
 
         switch (rndNum)
         {
@@ -51,7 +53,7 @@ public class ItemSpawner : MonoBehaviour
                 break;
 
         }
-        newObject.transform.position = new Vector3(0, transform.localPosition.y + 50 , 0);
+        newObject.transform.position = new Vector3(xPosition, transform.localPosition.y + 50 , zPosition);
 
         //vahenna spawnaus ajanvalia
         

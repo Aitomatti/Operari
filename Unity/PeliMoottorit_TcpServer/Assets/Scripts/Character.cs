@@ -70,20 +70,22 @@ public class Character : MonoBehaviour
 
     public void FixedUpdate()
     {
-        tiltAngle = 1.0f;
+        tiltAngle = 100.0f;
         // FIXME: STUPID SIMPLE EXAMPLE, ONLY FOR DEMO PURPOSE
         //Debug.Log("Rotation= " + tiltAngle);
 
 
-        //GYRON ARVOJA!!!! --y rotaatio asetettu negatiiviseksi
-        test = new Quaternion(-TcpServer.xRot, (TcpServer.yRot), TcpServer.zRot, TcpServer.wRot);
+        //GYRON ARVOJA!!!! | x-rotaatio asetettu negatiiviseksi
+        test = new Quaternion(-TcpServer.xRot, TcpServer.yRot, TcpServer.zRot, TcpServer.wRot);
         transform.rotation = test;
+
+        
         //Debug.Log("tecp X= " + TcpServer.yRot);
 
         if (Input.GetKey("r"))
         {
             Debug.Log("RESET PIZZA POSITION");
-            transform.rotation = new Quaternion(0, 0, 0, 0); ;
+            transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
 

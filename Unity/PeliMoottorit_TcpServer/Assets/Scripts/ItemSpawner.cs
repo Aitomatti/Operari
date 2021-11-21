@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject demoKuutioPrefab;
-    public GameObject demoSpherePrefab;
-    public GameObject demoCapsulePrefab;
+    public GameObject juusto;
+    public GameObject pepperon;
+    public GameObject oliivi;
+    public GameObject banaani;
     GameObject newObject;
 
     [SerializeField]
@@ -36,20 +37,23 @@ public class ItemSpawner : MonoBehaviour
     void Spawn()
     {
         Debug.Log("Spawned object");
-        int rndNum = Random.Range(0,3);
-        float xPosition = Random.Range(-4, 5);
-        float zPosition = Random.Range(-4, 5);
+        int rndNum = Random.Range(0,4);
+        float xPosition = Random.Range(-9, 10);
+        float zPosition = Random.Range(-9, 10);
 
         switch (rndNum)
         {
             case 0:
-                newObject = (GameObject)Instantiate(demoKuutioPrefab);
+                newObject = (GameObject)Instantiate(juusto);
                 break;
             case 1:
-                newObject = (GameObject)Instantiate(demoSpherePrefab);
+                newObject = (GameObject)Instantiate(pepperon);
                 break;
             case 2:
-                newObject = (GameObject)Instantiate(demoCapsulePrefab);
+                newObject = (GameObject)Instantiate(oliivi);
+                break;
+            case 3:
+                newObject = (GameObject)Instantiate(banaani);
                 break;
 
         }

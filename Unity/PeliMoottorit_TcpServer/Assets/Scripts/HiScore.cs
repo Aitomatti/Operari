@@ -210,10 +210,10 @@ public class HiScore : MonoBehaviour {
 
             sb = new HiScoreList();
             sb.HiScoreElementList = new List<HiScoreElement>(); 
-            sb.AddToList(new HiScoreElement("ABC", 15));
-            sb.AddToList(new HiScoreElement("CCC", 10));
-            sb.AddToList(new HiScoreElement("DDD", 5));
-            sb.AddToList(new HiScoreElement("EEE", 2));
+            sb.AddToList(new HiScoreElement("ESK", 42021));
+            sb.AddToList(new HiScoreElement("SSA", 13460));
+            sb.AddToList(new HiScoreElement("YAG", 5923));
+            sb.AddToList(new HiScoreElement("CEO PETRIII", 26566));
             SaveScoreBoard(sb);
         }
         return sb;

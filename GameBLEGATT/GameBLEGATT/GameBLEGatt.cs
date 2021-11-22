@@ -103,6 +103,7 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Stopped(DeviceWatcher a, object b)
         {
+            Console.WriteLine("DeviceWatcher Stoppeddddddd");
         }
 
         /// <summary>
@@ -112,6 +113,7 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Removed(DeviceWatcher a, DeviceInformationUpdate b)
         {
+            Console.WriteLine("DeviceWatcher RemovedDDDD");
         }
 
         /// <summary>
@@ -121,6 +123,7 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Updated(DeviceWatcher a, DeviceInformationUpdate b)
         {
+            Console.WriteLine("DeviceWatcher UPDated");
         }
 
         /// <summary>

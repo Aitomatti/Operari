@@ -83,7 +83,7 @@ namespace GameBLEGATT
 
 
             // FIXME: You can add loop where check possible user input, for example, if user want quit, or ...
-            //Console.ReadLine();
+            Console.ReadLine();
 
         }
     }

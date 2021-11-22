@@ -67,8 +67,8 @@ namespace GameBLEGATT
 
                 if (!exitLoop)
                 {
-                    Console.WriteLine("Yhteyden muodostus epäonnitui. Yritetään uudelleen 5 sekunnin päästä.");
-                    Thread.Sleep(5000);
+                    Console.WriteLine("Yhteyden muodostus epäonnitui. Yritetään uudelleen sekunnin päästä.");
+                    Thread.Sleep(1000);
                 }
             }
 
@@ -83,7 +83,7 @@ namespace GameBLEGATT
 
 
             // FIXME: You can add loop where check possible user input, for example, if user want quit, or ...
-            Console.ReadLine();
+            //Console.ReadLine();
 
         }
     }

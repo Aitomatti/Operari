@@ -237,8 +237,8 @@ namespace GameBLEGATT
 
             tcpGameClient.SendMessage(input);
 
-            Console.WriteLine(input);
-            Console.WriteLine("_______");
+            //Console.WriteLine(input);
+            //Console.WriteLine("_______");
 
 
             // TODO : Perform Read/Write operations on a characteristic

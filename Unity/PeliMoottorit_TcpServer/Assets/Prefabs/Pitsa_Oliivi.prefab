@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4865012444157748902}
   m_Layer: 0
   m_Name: Pitsa_Oliivi
-  m_TagString: Untagged
+  m_TagString: CLONE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

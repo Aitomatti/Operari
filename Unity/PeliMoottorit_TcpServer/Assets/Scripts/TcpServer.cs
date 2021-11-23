@@ -67,6 +67,7 @@ public class TcpServer : MonoBehaviour
 	public static float yRot;
 	public static float zRot;
 	public static float wRot;
+	public static int button;
 
 
 
@@ -138,6 +139,7 @@ public class TcpServer : MonoBehaviour
 							yRot = dataPackage.y;
 							zRot = dataPackage.z;
 							wRot =  dataPackage.w;
+							button = dataPackage.buttons;
 							//Debug.Log("x-rot= " + xRot);
 
 							InputValue = BitConverter.ToInt32(bytes, 0);

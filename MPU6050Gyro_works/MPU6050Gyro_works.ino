@@ -83,7 +83,6 @@ struct DataPackage {
   int buttons;
 };
 
-
 bool deviceConnected = false;
 class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
@@ -98,14 +97,11 @@ class MyServerCallbacks: public BLEServerCallbacks {
 
 BLECharacteristic *pCharacteristic ;
 
+//button pin
+const int PushButton = 15;
+int buttonState = 0;
+int buttonPress = 0;
 
-const int PushButton = 16;
-
-enum buttonstate {
-  one = 0b0001,
-  two = 0b0010,
-  three = 0b0100
-};
 
 ////
 
@@ -232,6 +228,7 @@ Serial.println("Marko Tiitto");
   pServer->getAdvertising()->start();
 
   pinMode(PushButton, INPUT);
+  
 ////
 
   
@@ -317,8 +314,7 @@ Serial.println("Marko Tiitto");
     Serial.println(F(")"));
   }
 
-  // configure LED for output
-  pinMode(LED_PIN, OUTPUT);
+
 }
 
 
@@ -345,13 +341,24 @@ void loop() {
     Serial.print("\t");
     Serial.println(q.z);
 
+    buttonState = digitalRead(PushButton);
+    if(buttonState == HIGH){
+      buttonPress = 1;
+      }
+    else{
+      buttonPress = 0;
+    }
+    Serial.print("\t");
+    Serial.println(buttonPress);
+    
+
     ////
     DataPackage package;
     package.x = q.x;
     package.y = q.y;
     package.z = q.z;
     package.w = q.w;
-    package.buttons;
+    package.buttons = buttonPress;
   
     uint8_t* ch;
     DataPackage* packagePTR = (DataPackage*)malloc(sizeof(DataPackage));
@@ -363,6 +370,8 @@ void loop() {
     pCharacteristic->notify();
     ////
 #endif
+
+
 
 #ifdef OUTPUT_READABLE_EULER
     // display Euler angles in degrees

@@ -15,13 +15,17 @@ public class PalloKursori : MonoBehaviour
     void Update()
     {
         //Debug.Log("Yrot = " + TcpServer.yRot);
+        //Debug.Log("asdasd");
+
         if(TcpServer.xRot >= 0.1)
         {
+            // Quit
             transform.localPosition = new Vector3(-7.62f, 1, -2.46f);
             menuSwitch = 2;
         }
         else if (TcpServer.xRot <= -0.1)
         {
+            // Start
             transform.localPosition = new Vector3(-7.62f, 1, -0.46f);
             menuSwitch = 1;
         }

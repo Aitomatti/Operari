@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public bool isStart;
-    public bool isQuit;
+
+    public GameObject toppingSpawner;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +32,10 @@ public class MainMenu : MonoBehaviour
 
                 ToppingTrigger.AddedPoints = 0;
                 FloorTrigger.lostPoints = 0;
+                ItemSpawner.spawnRate = 5f;
+
+                Instantiate(toppingSpawner);
+
                 break;
 
             case 2:
@@ -47,6 +51,7 @@ public class MainMenu : MonoBehaviour
         if (TcpServer.button == 1 || Input.GetKeyUp("p"))
         {
             Debug.Log("Button press");
+            if (Input.GetKeyUp("p")) PalloKursori.menuSwitch = 1;
             OnMouseUp();
         }
         

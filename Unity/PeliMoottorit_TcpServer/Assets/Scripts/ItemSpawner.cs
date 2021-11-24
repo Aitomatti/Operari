@@ -11,12 +11,12 @@ public class ItemSpawner : MonoBehaviour
     GameObject newObject;
 
     [SerializeField]
-    private float spawnRate = 5f;
+    public static float spawnRate = 5f;
     // Start is called before the first frame update
     void Start()
     {
         //GameObject gameObject = GetComponent <GameObject>();
-        
+        Invoke("Spawn", spawnRate);
     }
     // Update is called once per frame
     void Update()

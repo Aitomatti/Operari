@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+    //   !!    EI KAYTOSSA     !!
+    /*
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +23,19 @@ public class GameOver : MonoBehaviour
     }
 
     void GameStop()
-    {
-                //NULLreference!!!!
-        //GameObject.Find("Text").SetActive(true);
-
+    { 
+        //Piilota menu itemit
+        for (int i = 0; i < GameObject.Find("Text").transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
         HiScore.Instance.Show();
 
+        //Lopeta ainesten spawnaus
         Destroy(GameObject.FindGameObjectWithTag("Spawner"));
 
+        //Pauseta peli
+        Time.timeScale = 0;
     }
+    */
 }

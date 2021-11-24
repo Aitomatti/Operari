@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 133476454}
   m_Layer: 0
   m_Name: Start
-  m_TagString: Untagged
+  m_TagString: MenuItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,12 +253,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 133476448}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b05db5d532b7a4e82ffa64cd14fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toppingSpawner: {fileID: 5703449756572785452, guid: d3e8ec499cf5d4b0385287178253e85b, type: 3}
+  menuOption: {fileID: 0}
 --- !u!1 &851889539
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +269,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 851889540}
+  - component: {fileID: 851889541}
+  - component: {fileID: 851889542}
   m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
@@ -293,6 +296,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &851889541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851889539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b05db5d532b7a4e82ffa64cd14fffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toppingSpawner: {fileID: 5703449756572785452, guid: d3e8ec499cf5d4b0385287178253e85b, type: 3}
+  menuOption: {fileID: 0}
+--- !u!114 &851889542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851889539}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4a5ac42f111014f97c69d390c5f79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &976379548
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +431,7 @@ GameObject:
   - component: {fileID: 1080861261}
   m_Layer: 0
   m_Name: Quit
-  m_TagString: Untagged
+  m_TagString: MenuItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,12 +545,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080861255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62b05db5d532b7a4e82ffa64cd14fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toppingSpawner: {fileID: 0}
+  menuOption: {fileID: 0}
 --- !u!1 &1295925577
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1295925578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +693,7 @@ GameObject:
   - component: {fileID: 1906404171}
   m_Layer: 0
   m_Name: GameName
-  m_TagString: Untagged
+  m_TagString: MenuItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -881,7 +911,7 @@ GameObject:
   - component: {fileID: 2083071900}
   m_Layer: 0
   m_Name: Kursori
-  m_TagString: Untagged
+  m_TagString: MenuItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -3,14 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class MainMenu : MonoBehaviour
 {
 
     public GameObject toppingSpawner;
+    public Transform menuOption;
+
     // Start is called before the first frame update
     void Start()
     {
         HiScore.Instance.Show();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //nappi painettu
+        if (TcpServer.button == 1 || Input.GetKeyUp("p"))
+        {
+            Debug.Log("Button press");
+            if (Input.GetKeyUp("p")) PalloKursori.menuSwitch = 1;
+            OnMouseUp();
+        }
+
+        if (FloorTrigger.lostPoints == 20)
+        {
+            Debug.Log("GAMEOVER - " + FloorTrigger.lostPoints);
+            GameStop();
+        }
+
     }
 
     void OnMouseUp()
@@ -18,8 +40,14 @@ public class MainMenu : MonoBehaviour
         switch (PalloKursori.menuSwitch)
         {
             case 1:
+                //Jatka/Aloita peli
+                Time.timeScale = 1;
+
                 //RESET GAMESCENE
-                GameObject.Find("Text").SetActive(false);
+                for (int i = 0; i < GameObject.Find("Text").transform.childCount; i++)
+                {
+                    transform.GetChild(i).gameObject.SetActive(false);       
+                }
 
                 HiScore.Instance.Hide();
 
@@ -39,21 +67,25 @@ public class MainMenu : MonoBehaviour
                 break;
 
             case 2:
+                //SAMMUTA PELI
                 Application.Quit();
                 break;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void GameStop()
     {
-        //nappi painettu
-        if (TcpServer.button == 1 || Input.GetKeyUp("p"))
+        //Piilota menu itemit
+        for (int i = 0; i < GameObject.Find("Text").transform.childCount; i++)
         {
-            Debug.Log("Button press");
-            if (Input.GetKeyUp("p")) PalloKursori.menuSwitch = 1;
-            OnMouseUp();
+            transform.GetChild(i).gameObject.SetActive(true);
         }
-        
+        HiScore.Instance.Show();
+
+        //Lopeta ainesten spawnaus
+        Destroy(GameObject.FindGameObjectWithTag("Spawner"));
+
+        //Pauseta peli
+        Time.timeScale = 0;
     }
 }

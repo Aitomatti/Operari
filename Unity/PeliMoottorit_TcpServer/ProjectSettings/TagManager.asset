@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CLONE
   - Spawner
+  - MenuItem
   layers:
   - Default
   - TransparentFX

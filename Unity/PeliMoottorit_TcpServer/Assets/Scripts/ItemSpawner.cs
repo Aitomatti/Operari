@@ -16,7 +16,7 @@ public class ItemSpawner : MonoBehaviour
     void Start()
     {
         //GameObject gameObject = GetComponent <GameObject>();
-        Invoke("Spawn", spawnRate);
+        
     }
     // Update is called once per frame
     void Update()

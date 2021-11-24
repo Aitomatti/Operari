@@ -33,11 +33,11 @@ public class MainMenu : MonoBehaviour
                 ToppingTrigger.AddedPoints = 0;
                 FloorTrigger.lostPoints = 0;
                 break;
+
             case 2:
                 Application.Quit();
                 break;
         }
-
     }
 
     // Update is called once per frame

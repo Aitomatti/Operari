@@ -5,9 +5,12 @@ using UnityEngine;
 public class MouseHover : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    //  todennäköisesti turhaa
     void Start()
     {
-        GetComponent<Renderer>().material.color = Color.blue;
+
+        //GameObject.Find("Start").GetComponent<TextMesh>().color = Color.yellow;
     }
 
     void OnMouseEnter()

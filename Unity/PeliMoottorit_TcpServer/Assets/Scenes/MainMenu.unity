@@ -179,7 +179,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278190080
 --- !u!23 &133476451
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -258,8 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b05db5d532b7a4e82ffa64cd14fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStart: 1
-  isQuit: 0
   toppingSpawner: {fileID: 5703449756572785452, guid: d3e8ec499cf5d4b0385287178253e85b, type: 3}
 --- !u!1 &851889539
 GameObject:
@@ -444,7 +442,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278190080
 --- !u!23 &1080861258
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -523,8 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b05db5d532b7a4e82ffa64cd14fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isStart: 0
-  isQuit: 1
   toppingSpawner: {fileID: 0}
 --- !u!1 &1497901403
 GameObject:
@@ -664,7 +660,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190335
+    rgba: 4278190080
 --- !u!23 &1906404169
 MeshRenderer:
   m_ObjectHideFlags: 0

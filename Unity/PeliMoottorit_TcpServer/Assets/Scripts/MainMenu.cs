@@ -15,7 +15,6 @@ public class MainMenu : MonoBehaviour
 
     void OnMouseUp()
     {
-        
         switch (PalloKursori.menuSwitch)
         {
             case 1:

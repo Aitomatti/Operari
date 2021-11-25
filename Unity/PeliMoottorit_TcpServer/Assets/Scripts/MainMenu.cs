@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-
     public GameObject toppingSpawner;
     public Transform menuOption;
+
+    private bool startDone = true;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +21,21 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         //nappi painettu
-        if (TcpServer.button == 1 || Input.GetKeyUp("p"))
+        if (TcpServer.button == 1 && startDone == true || Input.GetKeyUp("p"))
         {
             Debug.Log("Button press");
             if (Input.GetKeyUp("p")) PalloKursori.menuSwitch = 1;
             OnMouseUp();
+
+            
         }
+
+        if (Input.GetKeyUp("o")) FloorTrigger.lostPoints = 20;
 
         if (FloorTrigger.lostPoints == 20)
         {
             Debug.Log("GAMEOVER - " + FloorTrigger.lostPoints);
+
             GameStop();
         }
 
@@ -64,6 +70,7 @@ public class MainMenu : MonoBehaviour
 
                 Instantiate(toppingSpawner);
 
+                startDone = false; //Estetaan spawnauksen ajaminen useasti
                 break;
 
             case 2:
@@ -73,7 +80,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    void GameStop()
+    public void GameStop()
     {
         //Piilota menu itemit
         for (int i = 0; i < GameObject.Find("Text").transform.childCount; i++)
@@ -87,5 +94,7 @@ public class MainMenu : MonoBehaviour
 
         //Pauseta peli
         Time.timeScale = 0;
+
+        startDone = true;
     }
 }

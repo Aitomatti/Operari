@@ -105,28 +105,28 @@ public class HiScoreInput : MonoBehaviour
     {
 
         // 6. Kutsu PrevLetter metodia kun vasennuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || TcpServer.wRot >= 0.4)
         {
             PrevLetter();
         }
 
 
         // 7. Kutsu NextLetter metodia kun oikeanuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || TcpServer.wRot <= -0.4)
         {
             NextLetter();
         }
 
 
         // 8. Kutsu NextAlphaBet metodia kun Ylösnuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || TcpServer.yRot <= -0.4)
         {
             NextAlphaBet();
         }
 
 
         // 9. Kutsu PrevAlphaBet metodia kun Alasnuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || TcpServer.yRot >= 0.4)
         {
             PrevAlphaBet();
         }
@@ -137,6 +137,10 @@ public class HiScoreInput : MonoBehaviour
             HiScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text 
                 + listOfLetters[1].GetComponent<Text>().text + 
                 listOfLetters[2].GetComponent<Text>().text, score);
+
+            //Lisaa tanne GameStop
+            GameObject.Find("Text").GetComponent<MainMenu>().GameStop();
+
         }
     }
 

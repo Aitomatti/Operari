@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5703449756572785443}
   m_Layer: 0
   m_Name: Topping_Spawner
-  m_TagString: CLONE
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,4 +61,3 @@ MonoBehaviour:
   pepperon: {fileID: 2675749373664518142, guid: 68d9e42419ff5be488b12839daf53dbe, type: 3}
   oliivi: {fileID: 5742826904714802274, guid: 4cda3b2f6a38f6c458bcabcfd85b02d6, type: 3}
   banaani: {fileID: 8995505332522710777, guid: 9efd4cd4ee5422a479fae844d7f1dc04, type: 3}
-  spawnRate: 5

@@ -78,6 +78,9 @@ public class HiScoreInput : MonoBehaviour
     /// </summary>
     private Color defaultColor;
 
+    private float time = 0.8f;
+    //public float period = 10.0f;
+
     /// <summary>
     /// This function is called when the object becomes enabled and active.
     /// </summary>
@@ -86,8 +89,6 @@ public class HiScoreInput : MonoBehaviour
         selectedLetter = 0;
         listOfLetters[selectedLetter].GetComponent<Animator>().enabled = true;
         scoreText.text = score.ToString();
-
-
     }
 
     /// <summary>
@@ -103,41 +104,57 @@ public class HiScoreInput : MonoBehaviour
     /// </summary>
     void Update()
     {
+        //time += Time.deltaTime;
+        time -= Time.deltaTime;
 
-        // 6. Kutsu PrevLetter metodia kun vasennuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.Return) || TcpServer.button == 1)
         {
-            PrevLetter();
-        }
-
-
-        // 7. Kutsu NextLetter metodia kun oikeanuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            NextLetter();
-        }
-
-
-        // 8. Kutsu NextAlphaBet metodia kun Ylösnuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            NextAlphaBet();
-        }
-
-
-        // 9. Kutsu PrevAlphaBet metodia kun Alasnuoli näppäin on painettu
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            PrevAlphaBet();
-        }
-
-
-
-        if (Input.GetKeyDown(KeyCode.Return)) {
-            HiScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text 
-                + listOfLetters[1].GetComponent<Text>().text + 
+            HiScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text
+                + listOfLetters[1].GetComponent<Text>().text +
                 listOfLetters[2].GetComponent<Text>().text, score);
+
+            //Lisaa tanne GameStop
+            Invoke("GameEnd", 2);
         }
+
+        if (time <= 0f)
+        {
+            Debug.Log("Time inputilioio");
+            // execute block of code here
+
+            // 6. Kutsu PrevLetter metodia kun vasennuoli näppäin on painettu
+            if (Input.GetKeyDown(KeyCode.LeftArrow) || TcpServer.yRot >= 0.1)
+            {
+                PrevLetter();
+            }
+
+
+            // 7. Kutsu NextLetter metodia kun oikeanuoli näppäin on painettu || TcpServer.wRot <= -0.4
+            if (Input.GetKeyDown(KeyCode.RightArrow) || TcpServer.yRot <= -0.1)
+            {
+                NextLetter();
+            }
+
+
+            // 8. Kutsu NextAlphaBet metodia kun Ylösnuoli näppäin on painettu
+            if (Input.GetKeyDown(KeyCode.UpArrow) || TcpServer.xRot <= -0.1)
+            {
+                PrevAlphaBet();
+            }
+
+
+            // 9. Kutsu PrevAlphaBet metodia kun Alasnuoli näppäin on painettu
+            if (Input.GetKeyDown(KeyCode.DownArrow) || TcpServer.xRot >= 0.1)
+            {
+                NextAlphaBet();
+            }
+        time = 0.8f;
+        }   
+    }
+
+    void GameEnd()
+    {
+        GameObject.Find("Text").GetComponent<MainMenu>().GameStop();
     }
 
     /// <summary>

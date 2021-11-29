@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class GameLogic : MonoBehaviour
 {
-
+    public static int gamePoints;
     /// <summary>
     /// Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.
     /// </summary>
@@ -36,16 +36,18 @@ public class GameLogic : MonoBehaviour
 
 
 
-        // Space pressed - Game Ended
-        if (Input.GetKeyUp(KeyCode.Space)) {
+        // Space pressed - Game Ended       Lisatty peli loppuun kun 20 ainesta tippuu
+        if (Input.GetKeyUp(KeyCode.Space) || FloorTrigger.lostPoints == 20) {
 
-            int kaava = ToppingTrigger.AddedPoints - (FloorTrigger.lostPoints * 100);
+            gamePoints = ToppingTrigger.AddedPoints - (FloorTrigger.lostPoints * 100);
 
             Debug.Log("score " + ToppingTrigger.AddedPoints);
             Debug.Log("lost " + FloorTrigger.lostPoints);
-            Debug.Log("yht " + kaava);
+            Debug.Log("yht " + gamePoints);
 
-            HiScore.Instance.ShowInputQuery(kaava);
+            HiScore.Instance.ShowInputQuery(gamePoints);
+
+            FloorTrigger.lostPoints = 0;
         }
     }
 }

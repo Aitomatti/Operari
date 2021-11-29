@@ -76,7 +76,7 @@ public class Character : MonoBehaviour
 
 
         //GYRON ARVOJA!!!! | x-rotaatio asetettu negatiiviseksi
-        test = new Quaternion(-TcpServer.xRot, TcpServer.yRot, TcpServer.zRot, TcpServer.wRot);
+        test = new Quaternion(TcpServer.xRot, TcpServer.zRot, TcpServer.yRot, TcpServer.wRot);
         transform.rotation = test;
 
         

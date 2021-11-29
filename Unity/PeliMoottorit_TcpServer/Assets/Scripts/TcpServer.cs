@@ -135,9 +135,9 @@ public class TcpServer : MonoBehaviour
 							Debug.Log("Z-value: " + dataPackage.z);
 							Debug.Log("W-value: " + dataPackage.w);
 							*/
-							xRot = dataPackage.x;
-							yRot = dataPackage.y;
-							zRot = dataPackage.z;
+							xRot = -dataPackage.x;
+							yRot = -dataPackage.y;
+							zRot = -dataPackage.z;
 							wRot =  dataPackage.w;
 							button = dataPackage.buttons;
 							//Debug.Log("x-rot= " + xRot);

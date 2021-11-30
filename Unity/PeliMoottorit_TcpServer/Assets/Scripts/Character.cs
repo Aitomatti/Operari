@@ -75,15 +75,15 @@ public class Character : MonoBehaviour
 
         //GYRON ARVOJA!!!! TcpServer.zRot
         test = new Quaternion(TcpServer.xRot, 0, TcpServer.yRot, TcpServer.wRot);
-        rBody.rotation = test;
+        transform.rotation = test;
 
-        /*
+        
         rEulerVel = new Quaternion(TcpServer.xRot, TcpServer.zRot, TcpServer.yRot, TcpServer.wRot).eulerAngles;
 
         float speed = (yPrevious - rEulerVel.y) * Mathf.Deg2Rad;
         Debug.Log(speed);
         rBody.angularVelocity = new Vector3(0, speed * 10, 0);
-        */
+        
         //rBody.AddTorque(0, speed * 10, 0);
 
         yPrevious = rEulerVel.y;

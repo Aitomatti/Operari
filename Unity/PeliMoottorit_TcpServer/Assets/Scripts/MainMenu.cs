@@ -26,18 +26,18 @@ public class MainMenu : MonoBehaviour
             Debug.Log("Button press");
             if (Input.GetKeyUp("p")) PalloKursori.menuSwitch = 1;
             OnMouseUp();
-
-            
         }
 
         if (Input.GetKeyUp("o")) FloorTrigger.lostPoints = 20;
 
+        /*
         if (FloorTrigger.lostPoints == 20)
         {
             Debug.Log("GAMEOVER - " + FloorTrigger.lostPoints);
 
             GameStop();
         }
+        */
 
     }
 
@@ -71,6 +71,7 @@ public class MainMenu : MonoBehaviour
                 Instantiate(toppingSpawner);
 
                 startDone = false; //Estetaan spawnauksen ajaminen useasti
+                GameLogic.runOnce = true;
                 break;
 
             case 2:
@@ -82,7 +83,7 @@ public class MainMenu : MonoBehaviour
 
     public void GameStop()
     {
-        //Piilota menu itemit
+        //Nayta menu itemit
         for (int i = 0; i < GameObject.Find("Text").transform.childCount; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
@@ -96,5 +97,6 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0;
 
         startDone = true;
+        
     }
 }

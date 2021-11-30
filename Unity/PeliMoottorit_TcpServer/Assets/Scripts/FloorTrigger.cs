@@ -18,6 +18,7 @@ public class FloorTrigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         lostPoints++;
     }
 

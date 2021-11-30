@@ -79,6 +79,7 @@ public class HiScoreInput : MonoBehaviour
     private Color defaultColor;
 
     private float time = 0.8f;
+    private bool endGame = true;
     //public float period = 10.0f;
 
     /// <summary>
@@ -107,14 +108,15 @@ public class HiScoreInput : MonoBehaviour
         //time += Time.deltaTime;
         time -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Return) || TcpServer.button == 1)
+        if (Input.GetKeyUp(KeyCode.Return) || TcpServer.button == 1 && endGame == true)
         {
+            endGame = false;
             HiScore.Instance.Save(listOfLetters[0].GetComponent<Text>().text
                 + listOfLetters[1].GetComponent<Text>().text +
                 listOfLetters[2].GetComponent<Text>().text, score);
 
             //Lisaa tanne GameStop
-            Invoke("GameEnd", 2);
+            Invoke("GameEnd", 2);  
         }
 
         if (time <= 0f)
@@ -154,6 +156,7 @@ public class HiScoreInput : MonoBehaviour
 
     void GameEnd()
     {
+        endGame = true;
         GameObject.Find("Text").GetComponent<MainMenu>().GameStop();
     }
 

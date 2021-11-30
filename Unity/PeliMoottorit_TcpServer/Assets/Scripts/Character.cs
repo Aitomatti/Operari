@@ -44,7 +44,9 @@ public class Character : MonoBehaviour
     protected Vector3 rEulerVel;
 
     Quaternion test;
-     //   = new Quaternion(0, 0, 0, 0);
+
+    private float yPrevious = 0;
+    //   = new Quaternion(0, 0, 0, 0);
 
 
     /// <summary>
@@ -54,11 +56,7 @@ public class Character : MonoBehaviour
     {
         rBody = GetComponent<Rigidbody>();
         rEulerVel = new Vector3(0, 100, 0);
-
-
-
     }
-
 
     /// <summary>
     /// Update is called once per frame
@@ -75,11 +73,21 @@ public class Character : MonoBehaviour
         //Debug.Log("Rotation= " + tiltAngle);
 
 
-        //GYRON ARVOJA!!!! | x-rotaatio asetettu negatiiviseksi
-        test = new Quaternion(TcpServer.xRot, TcpServer.zRot, TcpServer.yRot, TcpServer.wRot);
-        transform.rotation = test;
+        //GYRON ARVOJA!!!! TcpServer.zRot
+        test = new Quaternion(TcpServer.xRot, 0, TcpServer.yRot, TcpServer.wRot);
+        rBody.rotation = test;
 
-        
+        /*
+        rEulerVel = new Quaternion(TcpServer.xRot, TcpServer.zRot, TcpServer.yRot, TcpServer.wRot).eulerAngles;
+
+        float speed = (yPrevious - rEulerVel.y) * Mathf.Deg2Rad;
+        Debug.Log(speed);
+        rBody.angularVelocity = new Vector3(0, speed * 10, 0);
+        */
+        //rBody.AddTorque(0, speed * 10, 0);
+
+        yPrevious = rEulerVel.y;
+
         //Debug.Log("tecp X= " + TcpServer.yRot);
 
         if (Input.GetKey("r"))
@@ -103,19 +111,14 @@ public class Character : MonoBehaviour
 
             rBody.angularVelocity = new Vector3(0, tiltAngle, 0); 
         }
-        else
-        {
-            rBody.angularVelocity = Vector3.zero; //Pysäyttää pyörimisen
-        }
+
 
         if (Input.GetKey("a"))
         {
             Debug.Log("a pressed move left");
             float move = 0;
 
-            move++;
-            
-            
+            move++;  
         }
     }
 }

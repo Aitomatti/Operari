@@ -30,15 +30,6 @@ public class MainMenu : MonoBehaviour
 
         if (Input.GetKeyUp("o")) FloorTrigger.lostPoints = 20;
 
-        /*
-        if (FloorTrigger.lostPoints == 20)
-        {
-            Debug.Log("GAMEOVER - " + FloorTrigger.lostPoints);
-
-            GameStop();
-        }
-        */
-
     }
 
     void OnMouseUp()

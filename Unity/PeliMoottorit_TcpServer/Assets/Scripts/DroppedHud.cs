@@ -24,7 +24,7 @@ public class DroppedHud : MonoBehaviour
         }
         else if (GameLogic.runOnce == true)
         {
-            transform.position = new Vector3(transform.position.x, 20f, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 30f, transform.position.z);
         }
     }
 }

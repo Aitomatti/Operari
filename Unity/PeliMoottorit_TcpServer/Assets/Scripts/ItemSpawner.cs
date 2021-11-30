@@ -15,7 +15,6 @@ public class ItemSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //GameObject gameObject = GetComponent <GameObject>();
         Invoke("Spawn", spawnRate);
     }
     // Update is called once per frame
@@ -26,7 +25,6 @@ public class ItemSpawner : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if(Input.GetKeyDown("s") )
         {
             Debug.Log("Spawned by keybutton s");
@@ -44,16 +42,16 @@ public class ItemSpawner : MonoBehaviour
         switch (rndNum)
         {
             case 0:
-                newObject = (GameObject)Instantiate(juusto);
+                newObject = Instantiate(juusto);
                 break;
             case 1:
-                newObject = (GameObject)Instantiate(pepperon);
+                newObject = Instantiate(pepperon);
                 break;
             case 2:
-                newObject = (GameObject)Instantiate(oliivi);
+                newObject = Instantiate(oliivi);
                 break;
             case 3:
-                newObject = (GameObject)Instantiate(banaani);
+                newObject = Instantiate(banaani);
                 break;
 
         }

@@ -21,20 +21,6 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     void Update()
     {
-        // 4. Escape painettu, kutsutaan HiScore Singletonin Show Metodia (HiScore.Instance.Show)
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            HiScore.Instance.Show();
-        }
-
-
-        // 5. Escape Nappain nostettu ylös, kutsutaan HiScore Singletonin Hide Metodia
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            HiScore.Instance.Hide();
-        }
-
-
 
         // Space pressed - Game Ended       Lisatty peli loppuun kun 20 ainesta tippuu
         if (Input.GetKeyUp(KeyCode.Space) || FloorTrigger.lostPoints == 20) {

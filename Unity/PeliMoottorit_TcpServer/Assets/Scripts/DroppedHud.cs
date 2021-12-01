@@ -16,7 +16,7 @@ public class DroppedHud : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        droppedAmount.text = "Dropped: " + FloorTrigger.lostPoints.ToString();
+        droppedAmount.text = "Missed: " + FloorTrigger.lostPoints + "/10";
 
         if (GameLogic.runOnce == false)
         {

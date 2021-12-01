@@ -214,11 +214,6 @@ public class HiScore : MonoBehaviour {
             sb.AddToList(new HiScoreElement("SEV", 460));
             sb.AddToList(new HiScoreElement("MAT", 123));
             sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
-            sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
-            sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
-            sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
-            sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
-            sb.AddToList(new HiScoreElement("CEO PETRIII", 566));
             SaveScoreBoard(sb);
         }
         return sb;

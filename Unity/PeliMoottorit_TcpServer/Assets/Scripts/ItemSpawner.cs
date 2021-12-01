@@ -61,7 +61,7 @@ public class ItemSpawner : MonoBehaviour
         
         Debug.Log("Spawned rate= "+ spawnRate);
 
-        if(spawnRate > 0.3)
+        if(spawnRate > 0.8f)
         {
             spawnRate /= 1.1f;
         }

@@ -14,7 +14,7 @@ public class PalloKursori : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TcpServer.xRot >= 0.1)
+        if (TcpServer.xRot <= -0.1)
         {
             // Quit
             transform.localPosition = new Vector3(-8f, 0.75f, -10.0f);
@@ -23,7 +23,7 @@ public class PalloKursori : MonoBehaviour
             GameObject.Find("Start").GetComponent<TextMesh>().color = Color.black;
             GameObject.Find("Quit").GetComponent<TextMesh>().color = Color.red;
         }
-        else if (TcpServer.xRot <= -0.1)
+        else if (TcpServer.xRot >= 0.1)
         {
             // Start
             transform.localPosition = new Vector3(-8f, 0.75f, -5.0f);
@@ -36,6 +36,9 @@ public class PalloKursori : MonoBehaviour
         {
             transform.localPosition = new Vector3(-8f, 0.75f, -7.58f);
             menuSwitch = 0;
+
+            GameObject.Find("Start").GetComponent<TextMesh>().color = Color.black;
+            GameObject.Find("Quit").GetComponent<TextMesh>().color = Color.black;
         }
     }
 }

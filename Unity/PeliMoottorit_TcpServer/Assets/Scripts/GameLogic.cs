@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// GameLogic
@@ -14,7 +15,7 @@ public class GameLogic : MonoBehaviour
     /// </summary>
     private void Start() 
     {
-
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
     }
 
     /// <summary>

@@ -5,6 +5,8 @@ using UnityEngine;
 public class ToppingTrigger : MonoBehaviour
 {
     [SerializeField] static public int AddedPoints = 0;
+
+    private float timer = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,13 @@ public class ToppingTrigger : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        AddedPoints++;
+        timer -= Time.deltaTime;
+
+        if(timer <= 0)
+        {
+            AddedPoints++;
+            timer = 0.1f;
+        } 
     }
 
 }

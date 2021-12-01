@@ -76,19 +76,25 @@ public class HiScoreList{
             if (e.Score < element.Score)
             {
                 hiScoreElementList.Insert(i, element);
+
+                if (hiScoreElementList.Count > 13)
+                {
+                    hiScoreElementList.RemoveAt(13);
+                }
+
                 return;
             }
             i++;
         }
 
-        if (hiScoreElementList.Count < 10)
+        if (hiScoreElementList.Count < 13)
         {
             hiScoreElementList.Add(element);
         }
 
-        if (hiScoreElementList.Count >= 10)
+        if (hiScoreElementList.Count > 13)
         {
-            hiScoreElementList.RemoveAt(10);
+            hiScoreElementList.RemoveAt(13);
         }
 
         // 14. Toteuta AddToList Metodi

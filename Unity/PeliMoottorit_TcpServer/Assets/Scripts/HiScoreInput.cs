@@ -87,6 +87,12 @@ public class HiScoreInput : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
+        listOfLetters[1].GetComponent<Animator>().enabled = false;
+        listOfLetters[1].GetComponent<Text>().color = defaultColor;
+
+        listOfLetters[2].GetComponent<Animator>().enabled = false;
+        listOfLetters[2].GetComponent<Text>().color = defaultColor;
+        
         selectedLetter = 0;
         listOfLetters[selectedLetter].GetComponent<Animator>().enabled = true;
         scoreText.text = score.ToString();

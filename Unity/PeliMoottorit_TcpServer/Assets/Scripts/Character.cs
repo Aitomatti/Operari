@@ -43,7 +43,7 @@ public class Character : MonoBehaviour
     protected Rigidbody rBody;
     protected Vector3 rEulerVel;
 
-    Quaternion test;
+    Quaternion gyroValue;
 
     private float yPrevious = 0;
     //   = new Quaternion(0, 0, 0, 0);
@@ -69,13 +69,12 @@ public class Character : MonoBehaviour
     public void FixedUpdate()
     {
         tiltAngle = 100.0f;
-        // FIXME: STUPID SIMPLE EXAMPLE, ONLY FOR DEMO PURPOSE
         //Debug.Log("Rotation= " + tiltAngle);
 
 
         //GYRON ARVOJA!!!! TcpServer.zRot
-        test = new Quaternion(TcpServer.xRot, 0, TcpServer.yRot, TcpServer.wRot);
-        transform.rotation = test;
+        gyroValue = new Quaternion(TcpServer.xRot, 0, TcpServer.yRot, TcpServer.wRot);
+        transform.rotation = gyroValue;
 
         
         rEulerVel = new Quaternion(TcpServer.xRot, TcpServer.zRot, TcpServer.yRot, TcpServer.wRot).eulerAngles;
@@ -101,7 +100,7 @@ public class Character : MonoBehaviour
         {  
             Debug.Log("L pressed rotating right");
 
-            //rBody.AddTorque(0, tiltAngle, 0); //Täytyy käyttä addForce ja addTorque jotta rigidBody reagoi keskenään
+            //rBody.AddTorque(0, tiltAngle, 0); //Tï¿½ytyy kï¿½yttï¿½ addForce ja addTorque jotta rigidBody reagoi keskenï¿½ï¿½n
             rBody.angularVelocity = new Vector3(0, tiltAngle, 0);
         }
         else if (Input.GetKey("j") )

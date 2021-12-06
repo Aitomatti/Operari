@@ -18,13 +18,15 @@ public class DroppedHud : MonoBehaviour
     {
         droppedAmount.text = "Missed: " + FloorTrigger.lostPoints + "/10";
 
-        if (GameLogic.runOnce == false)
+        switch (GameLogic.runOnce)
         {
-            transform.position = new Vector3(transform.position.x, 500f, transform.position.z);
-        }
-        else if (GameLogic.runOnce == true)
-        {
-            transform.position = new Vector3(transform.position.x, 30f, transform.position.z);
+            case false:
+                transform.position = new Vector3(transform.position.x, 500f, transform.position.z);
+                break;
+
+            case true:
+                transform.position = new Vector3(transform.position.x, 30f, transform.position.z);
+                break;
         }
     }
 }

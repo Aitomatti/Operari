@@ -84,6 +84,8 @@ struct DataPackage {
 };
 
 bool deviceConnected = false;
+
+BLEAdvertising *pAdvertising;
 class MyServerCallbacks: public BLEServerCallbacks {
     void onConnect(BLEServer* pServer) {
       deviceConnected = true;
@@ -91,6 +93,7 @@ class MyServerCallbacks: public BLEServerCallbacks {
 
     void onDisconnect(BLEServer* pServer) {
       deviceConnected = false;
+      pAdvertising->start();
     }
     
 };
@@ -102,6 +105,7 @@ const int PushButton = 15;
 int buttonState = 0;
 int buttonPress = 0;
 
+int ledPin = 12;
 
 ////
 
@@ -225,9 +229,15 @@ Serial.println("Marko Tiitto");
 
   pCharacteristic->addDescriptor(new BLE2902());
   pService->start();
-  pServer->getAdvertising()->start();
+
+  pAdvertising = pServer->getAdvertising();
+  pAdvertising->start();
+  
+  
+  //pServer->getAdvertising()->start();
 
   pinMode(PushButton, INPUT);
+  pinMode(ledPin, OUTPUT);
   
 ////
 
@@ -369,6 +379,13 @@ void loop() {
     pCharacteristic->setValue(ch,sizeof(DataPackage));
     pCharacteristic->notify();
     ////
+
+    if(deviceConnected == true){
+      digitalWrite(ledPin, HIGH);
+      }
+    else{
+      digitalWrite(ledPin, LOW);
+      }
 #endif
 
 

@@ -232,9 +232,6 @@ Serial.println("Marko Tiitto");
 
   pAdvertising = pServer->getAdvertising();
   pAdvertising->start();
-  
-  
-  //pServer->getAdvertising()->start();
 
   pinMode(PushButton, INPUT);
   pinMode(ledPin, OUTPUT);

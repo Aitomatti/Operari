@@ -57,25 +57,18 @@ namespace GameBLEGATT
         {
 
             // Unityyn ei saaha yhdistettä error handling
-            
+
+            socketConnection = null;
             try
             {
                 socketConnection = new TcpClient("localhost", 8052);
             }
-            catch (Exception  e)
+            catch (Exception e)
             {
-                Console.WriteLine("Unityyn ei saatu yhteyttä\n");
-                Console.WriteLine(e + "\n");
+                Console.WriteLine("TcpGameClient - SendMessage() --> Error " + e);
+                return false;
             }
-
-                if (socketConnection == null)
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+            return true;
             
 
         }
@@ -86,7 +79,7 @@ namespace GameBLEGATT
         public void SendMessage(byte[] command)
         {
             // TODO: Check if socketConnection is null then return, do not try to send message to unity server
-            if (socketConnection == null)
+            if (socketConnection == null && !Connect())
             {
                 return;
             }
@@ -109,6 +102,7 @@ namespace GameBLEGATT
                 catch (SocketException socketException)
                 {
                     Console.WriteLine("TcpGameClient - SendMessage() --> Error " + socketException);
+                    Connect();
                 }
             }
         }

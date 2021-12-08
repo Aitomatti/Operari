@@ -1,33 +1,4 @@
-﻿/******************************************************************************
- * File        : GameBLEGatt.cs
- * Version     : 0
- * Author      : Toni Westerlund (toni.westerlund@lapinamk.com)
- * Copyright   : Lapland University of Applied Sciences
- * Licence     : MIT-Licence
- * 
- * Copyright (c) 2021 Lapland University of Applied Sciences
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- * 
- *****************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,11 +8,18 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.Storage.Streams;
 
+public enum BleState
+{
+    ENone, EDiscovery, EConnecting, EConnected
+}
+
 namespace GameBLEGATT
 {
     class GameBLEGatt
     {
-
+        private GattCharacteristic selectedGattCharacteristic;
+        private BluetoothLEDevice bluetoothLeDevice;
+        private BleState bleState = BleState.ENone;
         /// <summary>
         /// deviceWatcher
         /// </summary>
@@ -70,11 +48,13 @@ namespace GameBLEGATT
         /// </summary>
         public void StartBLEScanner()
         {
-    
+
+            bleState = BleState.EDiscovery;
             Console.WriteLine("GameBLEGatt - StartBLEScanner()");
 
             //deviceWatcher = DeviceInformation.CreateWatcher(BluetoothLEDevice.GetDeviceSelectorFromPairingState(false));
-            deviceWatcher = DeviceInformation.CreateWatcher(BluetoothLEDevice.GetDeviceSelectorFromPairingState(false));
+            deviceWatcher = DeviceInformation.CreateWatcher(
+                BluetoothLEDevice.GetDeviceSelectorFromPairingState(false));
             // TODO : Register Handlers, and Start watcher Check Documention!!!!
             deviceWatcher.Added += DeviceWatcher_Added;
             deviceWatcher.Updated += DeviceWatcher_Updated;
@@ -84,16 +64,16 @@ namespace GameBLEGATT
 
 
             // EnumerationCompleted and Stopped are optional to implement.
-            
+            deviceWatcher.Stopped += DeviceWatcher_Stopped;
 
             // Start the watcher.
             deviceWatcher.Start();
         }
 
-        private void DeviceWatcher_Added1(DeviceWatcher sender, DeviceInformation args)
+        /*private void DeviceWatcher_Added1(DeviceWatcher sender, DeviceInformation args)
         {
             throw new NotImplementedException();
-        }
+        }*/
 
 
         /// <summary>
@@ -103,7 +83,45 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Stopped(DeviceWatcher a, object b)
         {
-            Console.WriteLine("DeviceWatcher Stoppeddddddd");
+            Console.WriteLine("GameBLEGatt - DeviceWatcher_Stopped() - > DeviceWatcher_Stopped");
+            if (bleState == BleState.EDiscovery || bleState == BleState.EConnecting)
+            {
+                if (bluetoothLeDevice != null)
+                {
+                    bluetoothLeDevice.ConnectionStatusChanged -= ConnectionStatusChangedHandler;
+                    bluetoothLeDevice.Dispose();
+                }
+                if (selectedGattCharacteristic != null)
+                {
+                    selectedGattCharacteristic.ValueChanged -= Characteristic_ValueChanged;
+                }
+                bleState = BleState.EDiscovery;
+                deviceWatcher.Start();
+            }
+        }
+
+        private void ConnectionStatusChangedHandler(BluetoothLEDevice sender, object o)
+        {
+            Console.WriteLine("GameBLEGatt - ConnectionStatusChangedHandler()");
+            if (bluetoothLeDevice.ConnectionStatus == BluetoothConnectionStatus.Connected)
+            {
+                bleState = BleState.EConnected;
+            }
+            else if (bluetoothLeDevice.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
+            {
+                if (bluetoothLeDevice != null)
+                {
+                    bluetoothLeDevice.ConnectionStatusChanged -= ConnectionStatusChangedHandler;
+                    bluetoothLeDevice.Dispose();
+                }
+                if (selectedGattCharacteristic != null)
+                {
+                    selectedGattCharacteristic.ValueChanged -= Characteristic_ValueChanged;
+                }
+
+                bleState = BleState.EDiscovery;
+                deviceWatcher.Start();
+            }
         }
 
         /// <summary>
@@ -113,7 +131,7 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Removed(DeviceWatcher a, DeviceInformationUpdate b)
         {
-            Console.WriteLine("DeviceWatcher RemovedDDDD");
+            //Console.WriteLine("DeviceWatcher Removed");
         }
 
         /// <summary>
@@ -123,7 +141,7 @@ namespace GameBLEGATT
         /// <param name="b"></param>
         public void DeviceWatcher_Updated(DeviceWatcher a, DeviceInformationUpdate b)
         {
-            Console.WriteLine("DeviceWatcher UPDated");
+            //Console.WriteLine("DeviceWatcher Updated");
         }
 
         /// <summary>
@@ -135,8 +153,9 @@ namespace GameBLEGATT
         {
             
             // TODO : Check that bluetooth name is same what you setup on esp32 side
-            if (deviceInformation.Name == "TiittoESP32")
+            if (deviceInformation.Name == "TiittoESP32" && bleState == BleState.EDiscovery)
             {
+                bleState = BleState.EConnecting;
                 Console.WriteLine("GameBLEGatt - DeviceWatcher_Added() - > Device Found");
 
                 // TODO : Stop Device Watcher
@@ -144,7 +163,8 @@ namespace GameBLEGATT
 
                 // TODO : Connecting to the device
 
-                BluetoothLEDevice bluetoothLEDevice = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(deviceInformation.Id)).Result;
+                bluetoothLeDevice = Task.Run(async () => await BluetoothLEDevice.FromIdAsync(deviceInformation.Id)).Result;
+                bluetoothLeDevice.ConnectionStatusChanged += ConnectionStatusChangedHandler;
                 // HOX!! Use Task.Run for all async methods
                 // // Note: BluetoothLEDevice.FromIdAsync must be called from a UI thread because it may prompt for consent.
 
@@ -152,11 +172,12 @@ namespace GameBLEGATT
                 // TODO : Enumerating supported services and characteristics
 
                 // Get Gatt Services
-                GattDeviceServicesResult result = Task.Run(async () => await bluetoothLEDevice.GetGattServicesAsync()).Result;
+                
+                GattDeviceServicesResult result = Task.Run(async () => await bluetoothLeDevice.GetGattServicesAsync()).Result;
                 //BluetoothLEDevice result = Task.Run(async () => await bluetoothLEDevice.GetGattServicesAsync()).Result;
                 // Now that you have a BluetoothLEDevice object, the next step is to discover what data the device exposes. The first step to do this is to query for services:
 
-
+                
                 if (result.Status == GattCommunicationStatus.Success)
                 {
                     var services = result.Services[2];
@@ -165,6 +186,7 @@ namespace GameBLEGATT
 
                     // Once the service of interest has been identified, the next step is to query for characteristics.
                     GattCharacteristicsResult resultGATT = Task.Run(async () => await services.GetCharacteristicsAsync()).Result;
+                    //GattCharacteristicsResult resultGATT = Task.Run(async () => await services.GetCharacteristicsAsync()).Result;
 
                     if (resultGATT.Status == GattCommunicationStatus.Success)
                     {
@@ -198,17 +220,15 @@ namespace GameBLEGATT
                         }
 
                         // TODO : Subscribing for notifications
-
-                        
-
                         GattCommunicationStatus status = Task.Run(async () => await characteristics[0].WriteClientCharacteristicConfigurationDescriptorAsync(
-                        GattClientCharacteristicConfigurationDescriptorValue.Notify)).Result;
+                            GattClientCharacteristicConfigurationDescriptorValue.Notify)).Result;
 
 
                         if (status == GattCommunicationStatus.Success)
                         {
                             Console.WriteLine("GameBLEGatt - DeviceWatcher_Added() -> Notify Register OK ");
-                            characteristics[0].ValueChanged += Characteristic_ValueChanged;
+                            selectedGattCharacteristic = characteristics[0];
+                            selectedGattCharacteristic.ValueChanged += Characteristic_ValueChanged;
                         }
                         else
                         {
@@ -221,6 +241,11 @@ namespace GameBLEGATT
                         Console.WriteLine("GameBLEGatt - DeviceWatcher_Added() -> GattDeviceServicesResult FAILED");
                         StartBLEScanner();
                         // You can add error management here, if fail, propably you need retry, for ex. startScan again
+                    }
+
+                    if (bluetoothLeDevice.ConnectionStatus == BluetoothConnectionStatus.Connected)
+                    {
+                        bleState = BleState.EConnected;
                     }
                 }
             }

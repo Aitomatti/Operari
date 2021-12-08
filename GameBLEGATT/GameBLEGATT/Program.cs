@@ -59,7 +59,7 @@ namespace GameBLEGATT
             TcpGameClient gameClient = new TcpGameClient();
 
             // TODO : Call Connect method from created instance
-            bool exitLoop = false;
+            /*bool exitLoop = false;
             while (!exitLoop)
             {
                 Console.WriteLine("Yritetään muodostaa yhteyttä Unityyn");
@@ -70,7 +70,8 @@ namespace GameBLEGATT
                     Console.WriteLine("Yhteyden muodostus epäonnitui. Yritetään uudelleen sekunnin päästä.");
                     Thread.Sleep(1000);
                 }
-            }
+            }*/
+            gameClient.Connect();
 
             Console.WriteLine("Yhteys muodostettu Unityyn onnistunesti!\n\n\n\n\n");
             
